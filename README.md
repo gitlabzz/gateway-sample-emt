@@ -42,6 +42,10 @@ gateway-sample-emt
 - In browser http://localhost:8086 (enter database IP and gateway_user/ changeme to connect)
 
 
+## Gateway Setup
+
+- unzip APIGateway_7.7.20220228-DockerScripts-2.4.0-1.tar in any folder let's say ~/gateway_emt_scripts
+
 Create dummy password file: echo axway123 > pass.txt
 
 Generate cert: ./gen_domain_cert.py --domain-id=mydomain --pass-file=./pass.txt
