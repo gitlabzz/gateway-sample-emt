@@ -62,12 +62,13 @@ gateway-sample-emt
 - copy lic20.lic in ~/merge-dir/apigateway
 - copy mysql-connector-java-8.0.28.jar in ~/merge-dir/apigateway/ext/lib 
 - mkdir -p ~/merge-dir/apigateway/conf
-- mkdir -p ~/merge-dir/apigateway/logs
-- mkdir -p ~/merge-dir/apigateway/events
 
 
 - Build anm image: 
     - ./build_anm_image.py --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --anm-username=admin --anm-pass-file=./pass.txt --parent-image=apim_base_202204:7.7 --metrics --merge-dir=/home/asim/merge-dir/apigateway/ --out-image=apim_anm_202204:7.7 --license=/home/asim/merge-dir/apigateway/lic20.lic
+
+- mkdir -p ~/merge-dir/apigateway/logs
+- mkdir -p ~/merge-dir/apigateway/events
     
 - touch nopass.txt
 
