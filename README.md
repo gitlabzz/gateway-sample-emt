@@ -112,10 +112,43 @@ OR
 docker run -d --name=apimgr77 --network=api-gateway-domain -p 8075:8075 -p 8065:8065 -p 8080:8080 -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -v /home/asim/merge-dir/apigateway/logs:/opt/Axway/apigateway/logs -v /home/asim/merge-dir/apigateway/conf/licenses:/opt/Axway/apigateway/conf/licenses -e EMT_ANM_HOSTS=anm77:8090 -e EMT_DEPLOYMENT_ENABLED=true -e CASS_HOST1=172.16.63.177 -e CASS_HOST2=172.16.63.177 -e CASS_HOST3=172.16.63.177 -e CASS_PORT1=9042 -e CASS_PORT2=9042 -e CASS_PORT3=9042 -e CASS_USERNAME=cassandra -e CASS_PASS=changeme -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/metrics?useSSL=false -e METRICS_DB_USERNAME=gateway_user -e METRICS_DB_PASS=changeme -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes romaicus/gateway:7.7
 
 
+https://localhost:8075/home
+https://localhost:8090/
 
+- docker exec -it apimgr77 /bin/bash
+- cd /opt/Axway/apigateway/posix/bin
+- ./dbsetup --dburl=jdbc:mysql://172.16.63.178:3306/metrics?allowPublicKeyRetrieval=false --dbuser=gateway_user --dbpass=changeme
 
+look for message:
+New database
+About to upgrade schema. Please note that this operation may take some time for very large databases
+Schema successfully upgraded to: 002-leaf
 
-./dbsetup --dburl=jdbc:mysql://172.16.63.175:3306/metrics?allowPublicKeyRetrieval=false --dbuser=gateway --dbpass=changeme
+mysql -u gateway_user -p
+changeme
+show databases;
+use metrics;
+mysql> show tables;
++------------------------+
+| Tables_in_metrics      |
++------------------------+
+| audit_log_points       |
+| audit_log_sign         |
+| audit_message_payload  |
+| metric_group_types     |
+| metric_group_types_map |
+| metric_groups          |
+| metric_types           |
+| metrics_alerts         |
+| metrics_data           |
+| process_groups         |
+| processes              |
+| time_window_types      |
+| transaction_data       |
+| versions               |
++------------------------+
+14 rows in set (0.00 sec)
+
 
 
 
