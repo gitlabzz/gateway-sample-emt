@@ -48,14 +48,26 @@ gateway-sample-emt
 - copy APIGateway_7.7.20220228_Install_linux-x86-64_BN02.run to ~/gateway_emt_scripts
 - tar -xf APIGateway_7.7.20220228-DockerScripts-2.4.0-1.tar
 - cd apigw-emt-scripts-2.4.0/
+
 - Create dummy password file: 
     - echo changeme > pass.txt
+
 - Generate cert: 
     - ./gen_domain_cert.py --domain-id=mydomain --pass-file=./pass.txt
+
 - Build base image: 
     - ./build_base_image.py --installer=../APIGateway_7.7.20220228_Install_linux-x86-64_BN02.run --os=centos7 --out-image=apim_base_202204:7.7
+
+- mkdir -p ~/merge-dir/apigateway/ext/lib
+- copy lic20.lic in ~/merge-dir/apigateway
+- copy mysql-connector-java-8.0.28.jar in ~/merge-dir/apigateway/ext/lib 
+- mkdir -p ~/merge-dir/apigateway/conf
+- mkdir -p ~/merge-dir/apigateway/logs
+- mkdir -p ~/merge-dir/apigateway/events
+
+
 - Build anm image: 
-    - ./build_anm_image.py --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --anm-username=admin --anm-pass-file=./pass.txt --parent-image=apim_base_202202:7.7.KT --metrics --merge-dir=/home/asim/mydomain/apim77.202202/emt/apigateway/ --out-image=apim_anm_202202:7.7.KT --license=/home/asim/mydomain/apim77.202202/emt/apigateway/lic20.lic
+    - ./build_anm_image.py --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --anm-username=admin --anm-pass-file=./pass.txt --parent-image=apim_base_202204:7.7 --metrics --merge-dir=/home/asim/merge-dir/apigateway/ --out-image=apim_anm_202204:7.7 --license=/home/asim/merge-dir/apigateway/lic20.lic
 
 
 mydomain
