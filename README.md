@@ -68,10 +68,10 @@ gateway-sample-emt
 
 - Build anm image: 
     - ./build_anm_image.py --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --anm-username=admin --anm-pass-file=./pass.txt --parent-image=apim_base_202204:7.7 --metrics --merge-dir=/home/asim/merge-dir/apigateway/ --out-image=apim_anm_202204:7.7 --license=/home/asim/merge-dir/apigateway/lic20.lic
+    
+- touch nopass.txt
 
-
-mydomain
-/home/asim/gateway
+-  
 
 Build gwt image: ./build_gw_image.py --license=/home/asim/mydomain/apim77.202202/emt/apigateway/lic20.lic --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --parent-image=apim_base_202202:7.7.KT --pol=./docker-apim-vanilla.pol --env=./docker-apim-vanilla.env --fed-pass-file=./nopass.txt --group-id=mydomain-group --merge-dir=/home/asim/mydomain/apim77.202202/emt/apigateway/ --out-image=apim_apig_202202:7.7.KT
                
