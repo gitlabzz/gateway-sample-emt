@@ -87,8 +87,15 @@ To run locally:
 
 - mkdir -p ~/merge-dir/apigateway/logs
 - mkdir -p ~/merge-dir/apigateway/events
+- docker network create api-gateway-domain
 
-Run anm: docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/mydomain/apim77.202202/emt/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.175:3306/matrix?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_anm_202202:7.7.KT
+Run anm: 
+
+docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/matrix?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_anm_202204:7.7
+
+OR 
+
+docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/matrix?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes romaicus/anm:7.7
 
 
 Run gwt: docker run -d --name=apimgr77  --network=api-gateway-domain -p 8075:8075 -p 8065:8065 -p 8080:8080 -v /home/asim/mydomain/apim77.202202/emt/apigateway/events:/opt/Axway/apigateway/events -v /home/asim/mydomain/apim77.202202/emt/apigateway/logs:/opt/Axway/apigateway/logs -v /home/asim/mydomain/apim77.202202/emt/apigateway/conf/licenses:/opt/Axway/apigateway/conf/licenses -e EMT_ANM_HOSTS=anm77:8090 -e EMT_DEPLOYMENT_ENABLED=true -e CASS_HOST1=172.16.63.174 -e CASS_HOST2=172.16.63.174 -e CASS_HOST3=172.16.63.174 -e CASS_PORT1=9042 -e CASS_PORT2=9042 -e CASS_PORT3=9042 -e CASS_USERNAME=cassandra -e CASS_PASS=changeme -e METRICS_DB_URL=jdbc:mysql://172.16.63.175:3306/matrix?useSSL=false -e METRICS_DB_USERNAME=gateway -e METRICS_DB_PASS=changeme -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_apig_202202:7.7.KT
