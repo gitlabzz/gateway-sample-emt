@@ -66,24 +66,27 @@ gateway-sample-emt
 
 - Build anm image: 
     - ./build_anm_image.py --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --anm-username=admin --anm-pass-file=./pass.txt --parent-image=apim_base_202204:7.7 --metrics --merge-dir=/home/asim/merge-dir/apigateway/ --out-image=apim_anm_202204:7.7 --license=/home/asim/merge-dir/apigateway/lic20.lic
-
-- mkdir -p ~/merge-dir/apigateway/logs
-- mkdir -p ~/merge-dir/apigateway/events
+    
+- docker tag apim_anm_202204:7.7 romaicus/anm:7.7
+- docker push romaicus/anm:7.7
     
 - touch nopass.txt
+
+-  copy docker-apim-vanilla-1cass.env
+-  copy docker-apim-vanilla-3cass-smtp.pol
 
 -  Build gwt image:
     -  ./build_gw_image.py --license=/home/asim/merge-dir/apigateway/lic20.lic --domain-cert=./certs/mydomain/mydomain-cert.pem --domain-key=./certs/mydomain/mydomain-key.pem --domain-key-pass-file=./pass.txt --parent-image=apim_base_202204:7.7 --pol=./docker-apim-vanilla-3cass-smtp.pol --env=./docker-apim-vanilla-1cass.env --fed-pass-file=./nopass.txt --group-id=mydomain-group --merge-dir=/home/asim/merge-dir/apigateway/ --out-image=apim_apig_202204:7.7
                
 
-docker tag apim_apig_202204:7.7 romaicus/gateway:7.7
-docker push romaicus/gateway:7.7
+- docker tag apim_apig_202204:7.7 romaicus/gateway:7.7
+- docker push romaicus/gateway:7.7
 
 
 To run locally:
 
--  copy docker-apim-vanilla-1cass.env
--  copy docker-apim-vanilla-3cass-smtp.pol
+- mkdir -p ~/merge-dir/apigateway/logs
+- mkdir -p ~/merge-dir/apigateway/events
 
 Run anm: docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/mydomain/apim77.202202/emt/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.175:3306/matrix?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_anm_202202:7.7.KT
 
