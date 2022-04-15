@@ -45,6 +45,7 @@ gateway-sample-emt
 ## Gateway Setup
 
 - unzip APIGateway_7.7.20220228-DockerScripts-2.4.0-1.tar in any folder let's say ~/gateway_emt_scripts
+- copy APIGateway_7.7.20220228_Install_linux-x86-64_BN02.run to ~/gateway_emt_scripts
 
 Create dummy password file: echo axway123 > pass.txt
 
