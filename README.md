@@ -36,6 +36,11 @@ gateway-sample-emt
 - sudo ufw disable
 
 
+## Test MySQL Remote Connectivity
+- Go to Gateway EMT machine that has Docker installed already
+- docker run --name adminer-db -p 8086:8080 -d adminer (this will run Adminer container)
+- In browser http://localhost:8086 (enter database IP and gateway_user/ changeme to connect)
+
 
 Create dummy password file: echo axway123 > pass.txt
 
