@@ -17,6 +17,26 @@ gateway-sample-emt
     - seed_provider -> class_name -> seeds -> node_ip
 
 
+## MySQL Setup
+- sudo apt update -y
+- sudo apt install mysql-server
+- sudo systemctl start mysql.service
+- sudo systemctl status mysql.service
+- sudo systemctl enable mysql.service
+- sudo mysql_secure_installation
+- sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf -> bind-address = 0.0.0.0
+- sudo systemctl restart mysql
+- sudo mysql
+- CREATE USER 'gateway_user'@'%' IDENTIFIED BY 'changeme';
+- GRANT ALL PRIVILEGES ON database_name.* TO 'gateway_user'@'%';
+- exit
+- mysql -u gateway -p
+- changeme
+- exit
+- sudo ufw disable
+
+
+
 Create dummy password file: echo axway123 > pass.txt
 
 Generate cert: ./gen_domain_cert.py --domain-id=mydomain --pass-file=./pass.txt
