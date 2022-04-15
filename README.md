@@ -3,6 +3,20 @@ gateway-sample-emt
 
 
 
+## Cassandra Setup
+- Install JDK 1.8
+- Unzip cassandra.zip
+- Update cassandra/bin/cassandra.in.sh:
+    update JAVA_HOME
+    
+- Update cassandra/conf/cassandra.yaml:
+    - start_rpc: true
+    - rpc_address: 0.0.0.0
+    - broadcast_rpc_address: node_ip
+    - listen_address:node_ip
+    - seed_provider -> class_name -> seeds -> node_ip
+
+
 Create dummy password file: echo axway123 > pass.txt
 
 Generate cert: ./gen_domain_cert.py --domain-id=mydomain --pass-file=./pass.txt
