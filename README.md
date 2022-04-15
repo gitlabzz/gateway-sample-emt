@@ -95,27 +95,27 @@ To run locally:
 
 Run anm: 
 
-docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/matrix?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_anm_202204:7.7
+docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/metrics?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_anm_202204:7.7
 
 OR 
 
-docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/matrix?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes romaicus/anm:7.7
+docker run -d -p 8090:8090 --name=anm77 --network=api-gateway-domain -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/metrics?useSSL=false -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes romaicus/anm:7.7
 
 
 Run gwt: 
 
-docker run -d --name=apimgr77 --network=api-gateway-domain -p 8075:8075 -p 8065:8065 -p 8080:8080 -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -v /home/asim/merge-dir/apigateway/logs:/opt/Axway/apigateway/logs -v /home/asim/merge-dir/apigateway/conf/licenses:/opt/Axway/apigateway/conf/licenses -e EMT_ANM_HOSTS=anm77:8090 -e EMT_DEPLOYMENT_ENABLED=true -e CASS_HOST1=172.16.63.177 -e CASS_HOST2=172.16.63.177 -e CASS_HOST3=172.16.63.177 -e CASS_PORT1=9042 -e CASS_PORT2=9042 -e CASS_PORT3=9042 -e CASS_USERNAME=cassandra -e CASS_PASS=changeme -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/matrix?useSSL=false -e METRICS_DB_USERNAME=gateway_user -e METRICS_DB_PASS=changeme -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_apig_202204:7.7
+docker run -d --name=apimgr77 --network=api-gateway-domain -p 8075:8075 -p 8065:8065 -p 8080:8080 -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -v /home/asim/merge-dir/apigateway/logs:/opt/Axway/apigateway/logs -v /home/asim/merge-dir/apigateway/conf/licenses:/opt/Axway/apigateway/conf/licenses -e EMT_ANM_HOSTS=anm77:8090 -e EMT_DEPLOYMENT_ENABLED=true -e CASS_HOST1=172.16.63.177 -e CASS_HOST2=172.16.63.177 -e CASS_HOST3=172.16.63.177 -e CASS_PORT1=9042 -e CASS_PORT2=9042 -e CASS_PORT3=9042 -e CASS_USERNAME=cassandra -e CASS_PASS=changeme -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/metrics?useSSL=false -e METRICS_DB_USERNAME=gateway_user -e METRICS_DB_PASS=changeme -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes apim_apig_202204:7.7
 
 
 OR
 
-docker run -d --name=apimgr77 --network=api-gateway-domain -p 8075:8075 -p 8065:8065 -p 8080:8080 -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -v /home/asim/merge-dir/apigateway/logs:/opt/Axway/apigateway/logs -v /home/asim/merge-dir/apigateway/conf/licenses:/opt/Axway/apigateway/conf/licenses -e EMT_ANM_HOSTS=anm77:8090 -e EMT_DEPLOYMENT_ENABLED=true -e CASS_HOST1=172.16.63.177 -e CASS_HOST2=172.16.63.177 -e CASS_HOST3=172.16.63.177 -e CASS_PORT1=9042 -e CASS_PORT2=9042 -e CASS_PORT3=9042 -e CASS_USERNAME=cassandra -e CASS_PASS=changeme -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/matrix?useSSL=false -e METRICS_DB_USERNAME=gateway_user -e METRICS_DB_PASS=changeme -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes romaicus/gateway:7.7
+docker run -d --name=apimgr77 --network=api-gateway-domain -p 8075:8075 -p 8065:8065 -p 8080:8080 -v /home/asim/merge-dir/apigateway/events:/opt/Axway/apigateway/events -v /home/asim/merge-dir/apigateway/logs:/opt/Axway/apigateway/logs -v /home/asim/merge-dir/apigateway/conf/licenses:/opt/Axway/apigateway/conf/licenses -e EMT_ANM_HOSTS=anm77:8090 -e EMT_DEPLOYMENT_ENABLED=true -e CASS_HOST1=172.16.63.177 -e CASS_HOST2=172.16.63.177 -e CASS_HOST3=172.16.63.177 -e CASS_PORT1=9042 -e CASS_PORT2=9042 -e CASS_PORT3=9042 -e CASS_USERNAME=cassandra -e CASS_PASS=changeme -e METRICS_DB_URL=jdbc:mysql://172.16.63.178:3306/metrics?useSSL=false -e METRICS_DB_USERNAME=gateway_user -e METRICS_DB_PASS=changeme -e EMT_TRACE_LEVEL=INFO -e ACCEPT_GENERAL_CONDITIONS=yes romaicus/gateway:7.7
 
 
 
 
 
-./dbsetup --dburl=jdbc:mysql://172.16.63.175:3306/matrix?allowPublicKeyRetrieval=false --dbuser=gateway --dbpass=changeme
+./dbsetup --dburl=jdbc:mysql://172.16.63.175:3306/metrics?allowPublicKeyRetrieval=false --dbuser=gateway --dbpass=changeme
 
 
 
