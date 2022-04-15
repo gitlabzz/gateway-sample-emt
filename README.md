@@ -27,11 +27,13 @@ gateway-sample-emt
 - sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf -> bind-address = 0.0.0.0
 - sudo systemctl restart mysql
 - sudo mysql
+- create database metrics;
 - CREATE USER 'gateway_user'@'%' IDENTIFIED BY 'changeme';
-- GRANT ALL PRIVILEGES ON database_name.* TO 'gateway_user'@'%';
+- GRANT ALL PRIVILEGES ON metrics.* TO 'gateway_user'@'%';
 - exit
-- mysql -u gateway -p
+- mysql -u gateway_user -p
 - changeme
+- show databases;
 - exit
 - sudo ufw disable
 
@@ -87,6 +89,8 @@ To run locally:
 
 - mkdir -p ~/merge-dir/apigateway/logs
 - mkdir -p ~/merge-dir/apigateway/events
+- mkdir -p ~/merge-dir/apigateway/conf/licenses
+- cp lic20.lic conf/licenses/
 - docker network create api-gateway-domain
 
 Run anm: 
